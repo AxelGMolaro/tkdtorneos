@@ -1,0 +1,8 @@
+.table-dark *{
+    background-color: var(--color-background-alt) !important;
+    color: var(--color-highlight) !important;
+}
+
+.title{
+    color: var(--color-highlight) !important;
+}

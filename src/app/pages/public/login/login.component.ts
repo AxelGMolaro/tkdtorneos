@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { LayoutComponent } from '../../../components/layout/layout.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [LayoutComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

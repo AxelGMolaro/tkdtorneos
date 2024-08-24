@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+    /* Color Principal (Botones y Acciones) */
+    --color-primary: #FF4B4B;
+  
+    /* Color Secundario (Fondo de Pantalla, Áreas Secundarias) */
+    --color-secondary: #2D2D2D;
+  
+    /* Color de Resaltado (Puntuaciones, Indicadores de Actividad) */
+    --color-highlight: #FFD700;
+  
+    /* Color de Fondo Alternativo (Secciones Alternas, Áreas Menores) */
+    --color-background-alt: #1B263B;
+  
+    /* Color de Éxito (Indicadores Positivos, Mensajes de Ganador) */
+    --color-success: #32CD32;
+  }
+  
+
+  body{
+    background-color: var(--color-secondary);
+  }

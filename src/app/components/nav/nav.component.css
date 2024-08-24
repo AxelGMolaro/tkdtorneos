@@ -1,0 +1,17 @@
+.bg-light{
+    background-color: var(--color-background-alt) !important;
+    color: var(--color-primary) !important;
+}
+.navbar-brand{
+    color: var(--color-primary) !important;
+
+}
+
+
+.btn-primary{
+    background-color: var(--color-primary) !important;
+}
+
+.btn-active{
+    background-color: var(--color-primary) !important;
+}
