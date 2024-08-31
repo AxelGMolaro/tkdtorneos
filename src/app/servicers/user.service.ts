@@ -29,9 +29,12 @@ export class UserService implements OnInit {
   async loginWithGoogle() : Promise<UserCredential>{
     const provider = new GoogleAuthProvider();
     try {
-      const response = signInWithPopup(getAuth(),provider)
+      const response = await signInWithPopup(getAuth(),provider)
+      console.log("Login exitoso")
+      console.log(response)
       return response;
     } catch (error) {
+      console.log("Error en login")
       throw error
     }
   }
@@ -42,7 +45,7 @@ export class UserService implements OnInit {
     }
     return false;
   }
-  
+
   getActiveUser(): User | null{
     return getAuth().currentUser;
   }

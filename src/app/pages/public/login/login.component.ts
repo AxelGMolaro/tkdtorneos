@@ -26,15 +26,18 @@ export class LoginComponent implements OnInit {
 
   takeActionWhenUserIsLogged(){
     if (this.userService.hasActiveUser()){
-      this.router.navigate([""])
+      console.log("entro en aqui")
+      this.router.navigateByUrl("")
     }
+    console.log("NO entro en aqui")
+
   }
 
   async loginWithGoogle(){
     try {
       const credential:UserCredential = await this.userService.loginWithGoogle();
       credential.user.email;
-      
+      this.takeActionWhenUserIsLogged();
     } catch (error) {
       console.log(error)      
     }
