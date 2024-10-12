@@ -47,7 +47,7 @@ export class UserService implements OnInit {
     const usersCollection = collection(this.firestore, 'users');
 
     // Crear la consulta para buscar el documento por el campo 'email'
-    const q = query(usersCollection, where('email', '==', email));
+    const q = query(usersCollection, where('mail', '==', email));
 
     try {
       // Obtener los documentos que coinciden con la consulta
@@ -83,19 +83,19 @@ export class UserService implements OnInit {
     const usersCollection = collection(this.firestore, 'users');
     
     // Crear una consulta para buscar un documento cuyo campo 'email' coincida con el email proporcionado
-    const q = query(usersCollection, where('email', '==', mail));
+    const q = query(usersCollection, where('mail', '==', mail));
 
     try {
       // Ejecutar la consulta
       const querySnapshot = await getDocs(q);
-      
+      debugger
       // Si la consulta devuelve documentos, significa que existe
       if (!querySnapshot.empty) {
         console.log('Usuario encontrado con el email:', mail);
-        return true;  // El usuario existe
+        return false;  // El usuario existe
       } else {
         console.log('No se encontró ningún usuario con el email:', mail);
-        return false; // El usuario no existe
+        return true; // El usuario no existe
       }
     } catch (error) {
       console.error('Error al verificar el usuario: ', error);
@@ -134,7 +134,8 @@ export class UserService implements OnInit {
     const provider = new GoogleAuthProvider();
     try {
       const authUser: UserCredential = await signInWithPopup(getAuth(),provider)
-      if(!this.userExistInDatabase){
+      const userExistInDatabase = await this.userExistInDatabase(authUser.user.email!);
+      if(!userExistInDatabase){
         await this.createUser(authUser)
       }
       const user: IUser|null = await this.getUserByEmail(authUser.user.email!);

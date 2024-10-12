@@ -25,24 +25,27 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit(): void {
-      this.takeActionWhenUserIsLogged();
-      this.countryService.getAllCountries();
+      this.suscribeToUserStore();
+      // this.countryService.getAllCountries();
   }
 
-  takeActionWhenUserIsLogged(){
-    if (this.userService.hasActiveUser()){
-      console.log("entro en aqui")
-      this.router.navigateByUrl("")
-    }
-    console.log("NO entro en aqui")
+  suscribeToUserStore(){
+    this.userService.getActiveUser().subscribe(
+      user => {
+        if(user){
+          this.router.navigateByUrl("")
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
 
   }
 
   async loginWithGoogle(){
     try {
-      const credential:UserCredential = await this.userService.loginWithGoogle();
-      credential.user.email;
-      this.takeActionWhenUserIsLogged();
+     await this.userService.loginWithGoogle();
     } catch (error) {
       console.log(error)      
     }
