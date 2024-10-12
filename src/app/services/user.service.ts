@@ -6,19 +6,27 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { Route, Router } from '@angular/router';
 import { Firestore, collection, query, where, getDocs, addDoc } from '@angular/fire/firestore';
 import { IUser } from '../interfaces/IUser';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { login, logOut } from '../ngRx/actions/user.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService implements OnInit {
 
-  
+  user$: Observable<IUser | null>; // Observable que contendrá el estado del usuario
+
   // firebaseApp: any;
 
   constructor(
     private router: Router,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private store: Store<{ user: IUser | null }>
   ) { 
+
+    this.user$ = this.store.select('user'); // Selecciona el estado del usuario
+
   }
 
   ngOnInit(): void {
@@ -135,6 +143,7 @@ export class UserService implements OnInit {
         throw new Error("Error en el login.")
       }
       console.log("Login exitoso")
+      this.store.dispatch(login({user}))
       return user;
     } catch (error) {
       console.log("Error en login")
@@ -155,11 +164,11 @@ export class UserService implements OnInit {
   }
 
   /**
-   * Optiene el usuario activo de firebase
+   * Optiene el usuario activo de ngrx
    * @returns User
    */
-  getActiveUser(): User | null{
-    return getAuth().currentUser;
+  getActiveUser():  Observable<IUser|null>{
+    return this.user$;
   }
 
   /**
@@ -167,6 +176,7 @@ export class UserService implements OnInit {
    */
   signOut(){
     getAuth().signOut();
+    this.store.dispatch(logOut())
     this.router.navigateByUrl("");
   }
   
