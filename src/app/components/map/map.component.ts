@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { getFirestore } from "firebase/firestore";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-map',
@@ -9,4 +11,8 @@ import { Component } from '@angular/core';
 })
 export class MapComponent {
 
+
+  constructor(){
+    
+  }
 }

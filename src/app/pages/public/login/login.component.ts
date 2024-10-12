@@ -1,8 +1,9 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { LayoutComponent } from '../../../components/layout/layout.component';
-import { UserService } from '../../../servicers/user.service';
+import { UserService } from '../../../services/user.service';
 import { UserCredential } from 'firebase/auth';
 import { Route, Router } from '@angular/router';
+import { CountryService } from '../../../services/country.service';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,15 @@ export class LoginComponent implements OnInit {
  
   constructor(
     @Inject(UserService) private userService: UserService,
+    @Inject(UserService) private countryService: CountryService,
     private router : Router
   ){}
 
+  
+
   ngOnInit(): void {
       this.takeActionWhenUserIsLogged();
+      this.countryService.getAllCountries();
   }
 
   takeActionWhenUserIsLogged(){
