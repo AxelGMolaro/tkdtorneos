@@ -1,6 +1,8 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IUser } from '../../interfaces/IUser';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,6 +11,24 @@ import { RouterLink } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
 
+  user?:IUser|null
+
+  constructor(
+    @Inject(UserService) private userService: UserService,
+  ){}
+
+  ngOnInit(): void {
+    this.userService.getActiveUser().subscribe(
+      data => {
+        this.user = data
+      }
+    )
+  }
+
+
+  handleClickLogout(){
+    this.userService.signOut()
+  }
 }

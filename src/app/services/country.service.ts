@@ -24,17 +24,9 @@ export class CountryService {
 
   async getAllCountries(): Promise<any> {
     try {
-      const docRef = await addDoc(collection(this.db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      });
-      console.log("Document written with ID: ", docRef.id);
-    
       return this.http.get<any>(this.API_COUNTRIES);
-
     } catch (e) {
-      console.error("Error adding document: ", e);
+      console.error("Error al optener los paises ", e);
     }
 
     

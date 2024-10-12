@@ -4,4 +4,5 @@ export interface IUser {
     surname: string | null;
     mail: string | null;
     password?: string;
+    country?: string;
   }
