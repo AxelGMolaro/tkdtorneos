@@ -1,7 +1,7 @@
 
-<select class="form-control form-control-lg">
+<select class="form-control form-control-lg" [(ngModel)]="selectedCountry" (change)="handleSelect()">
     @for (item of countries; track item) {
-        <option>{{ item}}</option>
+        <option value="{{item}}">{{ item}}</option>
         } @empty {
         <option>There are no items.</option>
         }

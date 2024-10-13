@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore({
       user:userReducer,
-      countries: countriesReducer
+      countriesState: countriesReducer
     })],
     
     

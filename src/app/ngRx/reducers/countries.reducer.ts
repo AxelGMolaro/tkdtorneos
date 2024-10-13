@@ -1,12 +1,28 @@
 import { createReducer, on } from '@ngrx/store';
 import { login,  } from '../actions/user.actions';
 import { ICountry } from '../../interfaces/ICountry';
-import { set } from '../actions/countries.actions';
+import { set, setActiveCountry } from '../actions/countries.actions';
 
-// El estado puede ser un usuario (IUser) o null
-export const initialState: ICountry[] = []; // Estado inicial como un array vacío
+
+export interface CountriesState {
+  countries: ICountry[];
+  activeCountry: ICountry | null;
+}
+
+export const initialState: CountriesState = {
+  countries: [],
+  activeCountry: null
+};
 
 export const countriesReducer = createReducer(
   initialState,
-  on(set, (state, { countries }) => [...countries]) // Actualiza el estado con el nuevo array
+  on(set, (state, { countries }) => ({
+    ...state,
+    countries: [...countries]
+  })),
+  on(setActiveCountry, (state, { country }) => ({
+    ...state,
+    activeCountry: country
+  }))
 );
+
