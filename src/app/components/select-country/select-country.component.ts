@@ -33,6 +33,7 @@ export class SelectCountryComponent implements OnInit{
   }
 
   initActiveCountry(){
+    // this.countryService.firstInitCountries();
     this.countryService.getActiveCountry().subscribe(country => {
       this.selectedCountry = country? country?.name : "Argentina";
     })

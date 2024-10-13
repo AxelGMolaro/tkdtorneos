@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { count, filter, map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
 import { ICountry } from '../interfaces/ICountry';
 import { Store } from '@ngrx/store';
 import { set, setActiveCountry } from '../ngRx/actions/countries.actions';
-import { Firestore } from '@angular/fire/firestore';
+import { Firestore, query } from '@angular/fire/firestore';
 import { CountriesState } from '../ngRx/reducers/countries.reducer';
 
 @Injectable({
@@ -48,18 +48,44 @@ export class CountryService {
 
    }
 
-   async initCountries() {
+   async firstInitCountries() {
     try {
       let countries = await this.http.get<any>(this.API_COUNTRIES).toPromise();
       let countryNames = countries.map((country: any) => country.translations.spa.common).filter(Boolean); // Ajusta 'country.name' según la estructura de tu respuesta
       countryNames = Array.from(new Set(countryNames));
-      this.store.dispatch(set({ countries: countryNames }));
+      countryNames.map((name:any) => {
+        this.createCountry({
+          name,
+          tappsCount: 0
+        })
+      })
     } catch (e) {
       console.error('Error al obtener los países', e);
       throw e; // Opcional: lanzar el error para que lo maneje quien llama al método
     }
   }
 
+  async initCountries(){
+    try {
+      const ref = collection(this.firestore, "countries");
+      const q = await query(ref);
+      // Obtener los documentos que coinciden con la consulta
+      const querySnapshot = await getDocs(q);
+  
+      // Iterar sobre los resultados y asegurarse de que cumplan con la interfaz ICountry
+      const countriesBdd: ICountry[] = querySnapshot.docs.map(doc => ({
+        id: doc.id,          // Agregar el ID del documento
+        name: doc.data()['name'], 
+        ...doc.data()
+      }));
+      
+    
+      this.store.dispatch(set({ countries: countriesBdd }));
+    } catch (e) {
+      console.error('Error al obtener los países', e);
+      throw e; // Opcional: lanzar el error para que lo maneje quien llama al método
+    }
+  }
 
   /**
    * Crea una country a partir de un UserCredential
