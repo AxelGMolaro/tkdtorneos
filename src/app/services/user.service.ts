@@ -88,7 +88,6 @@ export class UserService implements OnInit {
     try {
       // Ejecutar la consulta
       const querySnapshot = await getDocs(q);
-      debugger
       // Si la consulta devuelve documentos, significa que existe
       if (!querySnapshot.empty) {
         console.log('Usuario encontrado con el email:', mail);

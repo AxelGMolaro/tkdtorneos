@@ -1,0 +1,8 @@
+
+<select class="form-control form-control-lg">
+    @for (item of countries; track item) {
+        <option>{{ item}}</option>
+        } @empty {
+        <option>There are no items.</option>
+        }
+  </select>

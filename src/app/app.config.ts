@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStore } from '@ngrx/store';
 import { userReducer } from './ngRx/reducers/user.reducer';
+import { provideHttpClient } from '@angular/common/http';
+import { countriesReducer } from './ngRx/reducers/countries.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers:
@@ -15,9 +17,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()), 
-    
+    provideHttpClient(),
     provideStore({
-      user:userReducer
+      user:userReducer,
+      countries: countriesReducer
     })],
     
     
