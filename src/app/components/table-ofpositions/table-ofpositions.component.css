@@ -6,3 +6,9 @@
 .title{
     color: var(--color-highlight) !important;
 }
+
+
+.table-div{
+    height: 50vh;
+    overflow-x: scroll;
+}

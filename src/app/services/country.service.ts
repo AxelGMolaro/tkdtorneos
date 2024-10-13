@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { count, filter, map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore, onSnapshot } from 'firebase/firestore';
 import { ICountry } from '../interfaces/ICountry';
 import { Store } from '@ngrx/store';
 import { set, setActiveCountry } from '../ngRx/actions/countries.actions';
@@ -31,6 +31,8 @@ export class CountryService {
     this.activeCountry$ = this.store.select(state => state.countriesState.activeCountry); 
    }
 
+
+   
 
    getCountries(): Observable<ICountry[]>{
     return this.store.select(state => state.countriesState).pipe(
@@ -68,19 +70,19 @@ export class CountryService {
   async initCountries(){
     try {
       const ref = collection(this.firestore, "countries");
-      const q = await query(ref);
-      // Obtener los documentos que coinciden con la consulta
-      const querySnapshot = await getDocs(q);
-  
-      // Iterar sobre los resultados y asegurarse de que cumplan con la interfaz ICountry
-      const countriesBdd: ICountry[] = querySnapshot.docs.map(doc => ({
-        id: doc.id,          // Agregar el ID del documento
-        name: doc.data()['name'], 
-        ...doc.data()
-      }));
-      
-    
-      this.store.dispatch(set({ countries: countriesBdd }));
+
+      // Suscribirse a los cambios en la colección "countries"
+      onSnapshot(ref, (querySnapshot) => {
+        const countriesBdd: ICountry[] = querySnapshot.docs.map(doc => ({
+          id: doc.id, // Agregar el ID del documento
+          name: doc.data()['name'],
+          ...doc.data()
+        }));
+        // Despachar la acción para almacenar los países en la tienda
+        this.store.dispatch(set({ countries: countriesBdd }));
+      }, (error) => {
+        console.error('Error al obtener los países', error);
+      });
     } catch (e) {
       console.error('Error al obtener los países', e);
       throw e; // Opcional: lanzar el error para que lo maneje quien llama al método
