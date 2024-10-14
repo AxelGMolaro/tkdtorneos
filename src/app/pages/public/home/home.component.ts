@@ -11,8 +11,7 @@ import { TapperComponent } from '../../../components/tapper/tapper.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [LayoutComponent, TableOFPositionsComponent,NgOptimizedImage,MapComponent, SelectCountryComponent,
-    TapperComponent
+  imports: [LayoutComponent, TableOFPositionsComponent,NgOptimizedImage,MapComponent, SelectCountryComponent,TapperComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -25,11 +24,11 @@ export class HomeComponent implements OnInit {
 
 
   constructor(){
-    this.setAudio();
   }
 
   ngOnInit(): void {
-      this.playSound();
+    this.setAudio();
+
   }
 
 

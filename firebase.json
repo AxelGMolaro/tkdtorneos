@@ -1,3 +1,18 @@
+
 {
-  "extensions": {}
+  "hosting": {
+    "public": "dist/global-click/browser",
+    "rewrite": {
+      "source": "**",
+      "destination": "/index.html"
+    },
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
+  }
 }
