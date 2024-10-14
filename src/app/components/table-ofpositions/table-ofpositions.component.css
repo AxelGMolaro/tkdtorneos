@@ -1,10 +1,10 @@
 .table-dark *{
     background-color: var(--color-background-alt) !important;
-    color: var(--color-highlight) !important;
+    color: var(--color-primary) !important;
 }
 
 .title{
-    color: var(--color-highlight) !important;
+    color: var(--color-primary) !important;
 }
 
 

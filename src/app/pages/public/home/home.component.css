@@ -11,3 +11,8 @@
     background-position: center;
     background-image: url("https://firebasestorage.googleapis.com/v0/b/globalclick-app.appspot.com/o/app%2Fglobalclick.png?alt=media&token=25ae1e50-3e8d-4389-9ff1-9bf30751751b");
 }
+
+
+.select-label{
+    color: var(--color-primary)
+}

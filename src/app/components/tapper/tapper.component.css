@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     height: 30vh;
-    background-color: #4CAF50; /* Color de fondo inicial */
+    background-color: #FF4B4B; /* Color de fondo inicial */
     color: white;
     font-size: 24px;
     border-radius: 10px;
@@ -21,14 +21,14 @@
 @keyframes clickAnimation {
     0% {
         transform: scale(1); /* Escala inicial */
-        background-color: #4CAF50; /* Color de fondo inicial */
+        background-color: #fd7e7e; /* Color de fondo inicial */
     }
     50% {
         transform: scale(1.2); /* Se expande */
-        background-color: #3e8e41; /* Color de fondo más oscuro */
+        background-color: #f85454; /* Color de fondo más oscuro */
     }
     100% {
         transform: scale(1); /* Se vuelve a la escala original */
-        background-color: #4CAF50; /* Color de fondo original */
+        background-color: #FF4B4B; /* Color de fondo original */
     }
 }

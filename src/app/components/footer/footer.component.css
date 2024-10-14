@@ -1,0 +1,22 @@
+
+
+footer {
+    background-color: var(--color-secondary); /* Color de fondo */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    border-top: 1px solid #e7e7e7; /* Línea superior */
+    position: relative; /* Para posibles posicionamientos */
+    bottom: 0; /* Para mantener el footer en la parte inferior */
+    width: 100%; /* Asegurarse de que el footer ocupe todo el ancho */
+}
+
+footer p {
+    margin: 0; /* Eliminar margen del párrafo */
+    color: var(--color-primary) !important; /* Color del texto */
+    font-size: 14px; /* Tamaño del texto */
+}
+
+/* Estilo adicional para el texto del copyright */
+footer p {
+    font-weight: normal; /* Normalizar el peso de la fuente */
+}

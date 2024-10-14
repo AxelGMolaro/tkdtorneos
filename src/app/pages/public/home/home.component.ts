@@ -17,9 +17,30 @@ import { TapperComponent } from '../../../components/tapper/tapper.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
 
 
+export class HomeComponent implements OnInit {
+ 
+  private audio = new Audio();
+
+
+  constructor(){
+    this.setAudio();
+  }
+
+  ngOnInit(): void {
+      this.playSound();
+  }
+
+
+  setAudio(){
+    this.audio.src = "https://firebasestorage.googleapis.com/v0/b/globalclick-app.appspot.com/o/app%2Fmusica.mp3?alt=media&token=875ffb51-ce90-455b-9f66-2fdde959061b"
+    this.audio.load();
+  }
+
+  playSound(){
+    this.audio.play().catch(error => console.log('Error al reproducir sonido:', error));
+  }
   
 
 }
