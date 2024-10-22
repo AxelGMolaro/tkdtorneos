@@ -13,6 +13,7 @@ import { PointsService } from '../../../services/points.service';
 })
 export class FigthComponent implements OnInit {
 
+  isInvert = false
   showResult = false;
   bluePoints = 0;
   redPoints = 0;
@@ -33,6 +34,7 @@ export class FigthComponent implements OnInit {
   suscribePoints(){
     this.pointsService.points$.subscribe(
       data => {
+        console.log(data)
         this.bluePoints = data.bluePoints,
         this.redPoints = data.redPoints
       }

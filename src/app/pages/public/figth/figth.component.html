@@ -1,11 +1,12 @@
 <div class="container-fluid" >
     <div class="row points-container" [style.backgroundColor]="pointsCounter.color">
-        <div class="col blue-points">
-           {{bluePoints}}
+        <div class="col red-points" [style.backgroundColor]="!isInvert ? 'blue': 'red'">
+            {{isInvert! ? redPoints : bluePoints}}
         </div>
-        <div class="col red-points">
-            {{redPoints}}
-         </div>
+        <div class="col blue-points"  [style.backgroundColor]="!isInvert ? 'red': 'blue'">
+           {{isInvert! ? bluePoints: redPoints}}
+        </div>
+       
     </div>
     <div class="row juez ">
         <div class="col">
@@ -15,25 +16,52 @@
     <div class="row finish-container ">
         <div class="col finish ">
             <button class="btn btn-primary mx-3" (click) ="handleClickFinish()">Finalizar </button>
+            <button class="btn btn-primary mx-3" (click) ="isInvert = !isInvert">Invertir </button>
             <button class="btn btn-primary" (click) ="handleClickFinish()">Resetear </button>
         </div>
     </div>
     <div class="row controls">
         <div class="col-6 left-controls ">
          
-            <div class="row"    >
-                <div class="control-item left" (click)="sumPoints(1,'BLUE')">+1</div>
+            <div class="row">
+                @if (!isInvert) {
+                    <div class="control-item left" (click)="sumPoints(1,'BLUE')">+1</div>
+x   
+                } @else {
+                    <div class="control-item right" (click)="sumPoints(1,'RED')">+1</div>
+                }
+
             </div>
             <div class="row">
-                <div class="control-item left" (click)="sumPoints(-1,'BLUE')">-1</div>
+                @if (!isInvert) {
+                    <div class="control-item left" (click)="sumPoints(-1,'BLUE')">-1</div>
+
+                } @else {
+                    <div class="control-item right" (click)="sumPoints(-1,'RED')">-1</div>
+
+                }
             </div>
         </div>
         <div class="col-6 right-controls ">
             <div class="row">
-                <div class="control-item right" (click)="sumPoints(1,'RED')">+1</div>
+                @if (!isInvert) {
+                    <div class="control-item right" (click)="sumPoints(1,'RED')">+1</div>
+
+                } @else {
+                    <div class="control-item left" (click)="sumPoints(1,'BLUE')">+1</div>
+
+                }
+
             </div>
             <div class="row">
-                <div class="control-item right" (click)="sumPoints(-1,'RED')">-1</div>
+                @if (!isInvert) {
+                    <div class="control-item right" (click)="sumPoints(-1,'RED')">-1</div>
+
+                } @else {
+                    <div class="control-item left" (click)="sumPoints(-1,'BLUE')">-1</div>
+
+
+                }
             </div>
         </div>
        
