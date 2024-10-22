@@ -1,19 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { EPointsType } from '../../../enums/pointTypes.enum';
+import { Component, Inject } from '@angular/core';
 import { PointsService } from '../../../services/points.service';
-import { CustomActionDialogComponent } from '../../../components/custom-action-dialog/custom-action-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-
-
+import { CustomActionDialogComponent } from '../../../components/custom-action-dialog/custom-action-dialog.component';
+import { EPointsType } from '../../../enums/pointTypes.enum';
 
 @Component({
-  selector: 'app-figth',
+  selector: 'app-patterns',
   standalone: true,
   imports: [CustomActionDialogComponent, MatDialogModule],
-  templateUrl: './figth.component.html',
-  styleUrl: './figth.component.css'
+  templateUrl: './patterns.component.html',
+  styleUrl: './patterns.component.css'
 })
-export class FigthComponent implements OnInit {
+export class PatternsComponent {
 
   isInvert = false
   showResult = false;
@@ -36,7 +34,7 @@ export class FigthComponent implements OnInit {
   }
 
   suscribePoints(){
-    this.pointsService.setPoints(0,0)
+    this.pointsService.setPoints(10,10)
     this.pointsService.points$.subscribe(
       data => {
         console.log(data)
@@ -47,7 +45,9 @@ export class FigthComponent implements OnInit {
   }
 
   sumPoints(points: number, type : string){
-    if(!this.showResult){
+    //solo deja sumar hasta 10
+    let sum = type as EPointsType == EPointsType.RED && this.redPoints == 10 && points > 0 ? false : EPointsType.BLUE && this.bluePoints == 10 && points > 0 ? false : true
+    if(!this.showResult && sum){
       this.pointsService.sumPoints(points,type as EPointsType)
     }
   }
@@ -62,7 +62,7 @@ export class FigthComponent implements OnInit {
   }
 
   resetPoints(){
-    this.pointsService.resetPoints()
+    this.pointsService.setPoints(10,10)
     this.showResult = false;
   }
 
@@ -71,8 +71,9 @@ export class FigthComponent implements OnInit {
       data: {
         title: 'REINICIAR',
         message: `¿Quiere reiniciar el marcador?`,
-        action: () => this.pointsService.resetPoints()
+        action: () => this.resetPoints()
       }
     })
   }
+
 }

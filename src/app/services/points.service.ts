@@ -24,6 +24,11 @@ export class PointsService {
     this.store.dispatch(setRedPoints({points: 0}))
    }
 
+   setPoints(bluePoints: number, redPoints: number){
+    this.store.dispatch(setBluePoints({points: bluePoints}))
+    this.store.dispatch(setRedPoints({points: redPoints}))
+   }
+
    sumPoints(points: number, type: EPointsType){
     const reducer = type === EPointsType.BLUE ?  sumBluePoints(({points: points})) : sumRedPoints(({points: points}))
     this.store.dispatch(reducer);

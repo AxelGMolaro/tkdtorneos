@@ -1,0 +1,110 @@
+.points-container{
+    background-color: red;
+    height: 40vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 50px;
+    text-align: center;
+}
+
+.red-points{
+    background-color: red;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blue-points{
+    background-color: blue;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-item{
+    border-radius: 125px;
+    height: 120px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bold ;
+}
+
+.control-item.left{
+    background-color: blue;
+
+}
+
+.control-item.right{
+    background-color: red;
+
+}
+
+
+.juez{
+    display: flex;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    background-color: beige;
+}
+
+.container-fluid{
+    background-color: black !important;
+    height: 100vh;
+}
+
+.controls{
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 4%;
+}
+
+.right-controls {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+}
+
+.finish-container{
+    width: 100vw;
+
+}
+.finish{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    height: 10vh;
+}
+
+
+.result{
+    width: 100vw;
+    height: 80px;
+    position: fixed;
+    display: flex;
+    top: 20vh;
+    background-color: red;
+    justify-content: space-around;
+    align-items: center;
+    border: 4px solid black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}

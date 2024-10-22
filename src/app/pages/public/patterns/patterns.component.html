@@ -1,0 +1,135 @@
+<div class="container-fluid" >
+    <div class="row points-container" [style.backgroundColor]="pointsCounter.color">
+        <div class="col red-points" [style.backgroundColor]="!isInvert ? 'blue': 'red'">
+            {{isInvert! ? redPoints : bluePoints}}
+        </div>
+        <div class="col blue-points"  [style.backgroundColor]="!isInvert ? 'red': 'blue'">
+           {{isInvert! ? bluePoints: redPoints}}
+        </div>
+       
+    </div>
+    <div class="row juez ">
+        <div class="col">
+            Juez número 1
+        </div>
+    </div>
+    <div class="row finish-container ">
+        <div class="col finish ">
+            <button class="btn btn-primary mx-3" (click) ="handleClickFinish()">Finalizar </button>
+            <button class="btn btn-primary mx-3" (click) ="isInvert = !isInvert">Invertir </button>
+            <button class="btn btn-primary" (click) ="handleClickReset()">Resetear </button>
+        </div>
+    </div>
+    <div class="row controls">
+        <div class="col-6 left-controls ">
+         
+                
+            <div class="row">
+                @if (!isInvert) {
+                    <div class="control-item col left" (click)="sumPoints(-1,'BLUE')">-1</div>
+                } @else {
+                    <div class="control-item col right" (click)="sumPoints(-1,'RED')">-1</div>
+                }
+                @if (!isInvert) {
+                    <div class="control-item col left" (click)="sumPoints(1,'BLUE')">+1</div>
+                } @else {
+                    <div class="control-item col right" (click)="sumPoints(1,'RED')">+1</div>
+                }
+
+            </div>
+
+            <div class="row">
+                @if (!isInvert) {
+                    <div class="control-item col left" (click)="sumPoints(-0.5,'BLUE')">-0,5</div>
+                } @else {
+                    <div class="control-item col right" (click)="sumPoints(-0.5,'RED')">-0,5</div>
+                }
+                @if (!isInvert) {
+                    <div class="control-item col left" (click)="sumPoints(0.5,'BLUE')">0,5</div>
+                } @else {
+                    <div class="control-item col right" (click)="sumPoints(0.5,'RED')">0,5</div>
+                }
+
+            </div>
+            <div class="row">
+                @if (!isInvert) {
+                    <div class="control-item col left" (click)="sumPoints(-0.20,'BLUE')">-0,20</div>
+
+                } @else {
+                    <div class="control-item col right" (click)="sumPoints(-0.20,'RED')">-0,20</div>
+
+                }
+
+                @if (!isInvert) {
+                    <div class="control-item col left" (click)="sumPoints(0.20,'BLUE')">0,20</div>
+
+                } @else {
+                    <div class="control-item col right" (click)="sumPoints(0.20,'RED')">0,20</div>
+
+                }
+            </div>
+        </div>
+        <div class="col-6 right-controls ">
+            <div class="row">
+                @if (!isInvert) {
+                    <div class="control-item  col right" (click)="sumPoints(1,'RED')">+1</div>
+
+                } @else {
+                    <div class="control-item  col left" (click)="sumPoints(1,'BLUE')">+1</div>
+
+                }
+
+                @if (!isInvert) {
+                    <div class="control-item col right" (click)="sumPoints(-1,'RED')">-1</div>
+
+                } @else {
+                    <div class="control-item col left" (click)="sumPoints(-1,'BLUE')">-1</div>
+
+                }
+
+            </div>
+            <div class="row">
+                @if (!isInvert) {
+                    <div class="control-item col right" (click)="sumPoints(0.5,'RED')">+0.5</div>
+
+                } @else {
+                    <div class="control-item col left" (click)="sumPoints(0.5,'BLUE')">+0.5</div>
+                }
+                @if (!isInvert) {
+                    <div class="control-item col right" (click)="sumPoints(-0.5,'RED')">-0.5</div>
+
+                } @else {
+                    <div class="control-item col left" (click)="sumPoints(-0.5,'BLUE')">-0.5</div>
+                }
+            </div>
+
+            <div class="row">
+                @if (!isInvert) {
+                    <div class="control-item col right" (click)="sumPoints(0.2,'RED')">+0.2</div>
+
+                } @else {
+                    <div class="control-item col left" (click)="sumPoints(0.2,'BLUE')">+0.2</div>
+                }
+                @if (!isInvert) {
+                    <div class="control-item col right" (click)="sumPoints(-0.2,'RED')">-0.2</div>
+
+                } @else {
+                    <div class="control-item col left" (click)="sumPoints(-0.2,'BLUE')">-0.2</div>
+                }
+            </div>
+
+        </div>
+       
+    </div>
+</div>
+
+@if (this.showResult) {
+    <div class=" result" [style.backgroundColor] = 'bluePoints!=redPoints ? bluePoints>redPoints ? "blue" : "red" : "gray"'>
+        <div>
+            GANADOR : {{bluePoints!=redPoints ? bluePoints>redPoints ? "AZUL" : "ROJO" : "EMPATE"}}
+        </div>
+        <div (click) = "this.showResult = false">x</div>
+
+    </div>
+}
+
