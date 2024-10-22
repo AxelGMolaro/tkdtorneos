@@ -10,7 +10,8 @@ import { provideStore } from '@ngrx/store';
 import { userReducer } from './ngRx/reducers/user.reducer';
 import { provideHttpClient } from '@angular/common/http';
 import { countriesReducer } from './ngRx/reducers/countries.reducer';
-import { pointsReducer } from './ngRx/reducers/points.reducer.';
+import { pointsReducer } from './ngRx/reducers/points.reducer';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers:
@@ -23,7 +24,7 @@ export const appConfig: ApplicationConfig = {
       user:userReducer,
       countriesState: countriesReducer,
       pointsState: pointsReducer
-    })],
+    }), provideAnimationsAsync()],
     
     
 };

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { setBluePoints, setRedPoints, sumBluePoints, sumRedPoints } from '../ngRx/actions/points.actions';
-import { PointsState } from '../ngRx/reducers/points.reducer.';
+import { PointsState } from '../ngRx/reducers/points.reducer';
 import { EPointsType } from '../enums/pointTypes.enum';
 
 @Injectable({

@@ -1,13 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { EPointsType } from '../../../enums/pointTypes.enum';
 import { PointsService } from '../../../services/points.service';
+import { CustomActionDialogComponent } from '../../../components/custom-action-dialog/custom-action-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 
 @Component({
   selector: 'app-figth',
   standalone: true,
-  imports: [],
+  imports: [CustomActionDialogComponent, MatDialogModule],
   templateUrl: './figth.component.html',
   styleUrl: './figth.component.css'
 })
@@ -24,6 +26,8 @@ export class FigthComponent implements OnInit {
 
   constructor(
     @Inject(PointsService) private pointsService: PointsService,
+    @Inject(MatDialog) private dialog: MatDialog,
+
   ){
 
   }
@@ -52,5 +56,20 @@ export class FigthComponent implements OnInit {
 
   handleClickFinish(){
     this.showResult = true;
+  }
+
+  resetPoints(){
+    this.pointsService.resetPoints()
+    this.showResult = false;
+  }
+
+  handleClickReset(){
+    this.dialog.open(CustomActionDialogComponent, {
+      data: {
+        title: 'REINICIAR',
+        message: `¿Quiere reiniciar el marcador?`,
+        action: () => this.pointsService.resetPoints()
+      }
+    })
   }
 }
