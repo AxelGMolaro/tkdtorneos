@@ -1,11 +1,10 @@
 {
   "hosting": {
-    "public": "dist/global-click/browser",
+    "public": "dist/tkdtorneos/browser",
     "rewrite": {
       "source": "**",
       "destination": "/index.html"
     },
-    "source": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
