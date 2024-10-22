@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row main">
+        <div class="col-12 section"  
+        (click)="!showResult ? !isInvert   ? showBlueFlag = !showBlueFlag : showRedFlag = !showRedFlag: '' " 
+        [style.backgroundColor]="!isInvert ? 'blue': 'red'">
+           @if (showBlueFlag && !isInvert ){
+             <fa-icon [icon]="faFlag"></fa-icon>
+           } 
+
+           @if (showRedFlag && isInvert ){
+            <fa-icon [icon]="faFlag"></fa-icon>
+          } 
+        </div>
+        <div class="col-12 section"
+        (click)="!showResult ?  isInvert ? showBlueFlag = !showBlueFlag : showRedFlag = !showRedFlag: ''"
+        
+        [style.backgroundColor]="!isInvert ? 'red': 'blue'">
+            @if (showRedFlag && !isInvert ){
+                <fa-icon [icon]="faFlag"></fa-icon>
+              } 
+   
+              @if(showBlueFlag && isInvert ){
+               <fa-icon [icon]="faFlag"></fa-icon>
+             } 
+        </div>
+    </div>
+</div>
+
+<div class="buttons">
+    <button class="btn btn-primary mx-3" (click)="showResult = true" >Finalizar </button>
+    <button class="btn btn-primary mx-3" (click) ="isInvert = !isInvert">Invertir </button>
+    <button class="btn btn-primary"  (click)="handleClickReset()">Resetear </button>
+</div>
+
+
+@if (this.showResult) {
+    <div class=" result" [style.backgroundColor] = 'showBlueFlag == true && showRedFlag == true? "gray": showBlueFlag == false && showRedFlag == false ? "gray" : showBlueFlag == true && showRedFlag == false ? "blue":"red"'>
+        <div>
+            asdadasas
+            <!-- GANADOR : {{bluePoints!=redPoints ? bluePoints>redPoints ? "AZUL" : "ROJO" : "EMPATE"}} -->
+        </div>
+        <div (click) = "this.showResult = false">x</div>
+
+    </div>
+}

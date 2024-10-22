@@ -45,7 +45,7 @@ export class PatternsComponent {
   }
 
   sumPoints(points: number, type : string){
-    //solo deja sumar hasta 10
+    //solo deja sumar hasta 10c
     let sum = type as EPointsType == EPointsType.RED && this.redPoints == 10 && points > 0 ? false : EPointsType.BLUE && this.bluePoints == 10 && points > 0 ? false : true
     if(!this.showResult && sum){
       this.pointsService.sumPoints(points,type as EPointsType)
