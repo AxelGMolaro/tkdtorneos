@@ -6,7 +6,8 @@ import { PatternsComponent } from './pages/public/patterns/patterns.component';
 import { BlueOrRedComponent } from './pages/public/blue-or-red/blue-or-red.component';
 
 export const routes: Routes = [
-    { path: "", component: BlueOrRedComponent },
+    { path: "", component: HomeComponent },
+    { path: "flags", component: BlueOrRedComponent },
     { path: "patterns", component: PatternsComponent },
     { path: "combat", component: FigthComponent },
     { path: "login", component: LoginComponent }

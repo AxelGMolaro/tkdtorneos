@@ -28,8 +28,10 @@
 
 .control-item{
     border-radius: 125px;
-    height: 120px;
-    width: 120px;
+    height: 80px;
+    width: 80px;
+    margin-left: 5px;
+    margin-right: 5px;
     display: flex;
     justify-content: center;
     align-items: center;

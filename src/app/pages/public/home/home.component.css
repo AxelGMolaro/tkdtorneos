@@ -1,18 +1,19 @@
-.home{
-    background-color: var(--color-secondary);
-    width: 100%;
-    height: 100vh;
-}
-
-.image-banner{
+.main{
     width: 100vw;
-    min-height: 35vh;
-    background-size: 100%;
-    background-position: center;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/globalclick-app.appspot.com/o/app%2Fglobalclick.png?alt=media&token=25ae1e50-3e8d-4389-9ff1-9bf30751751b");
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 30vh;
 }
 
+.main button{
+   width: 40vw;
+   margin-top: 10px;
+   height: 10vh;
+}
 
-.select-label{
-    color: var(--color-primary)
+body{
+    background-color: gray;
 }

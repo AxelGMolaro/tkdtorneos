@@ -7,12 +7,12 @@ import { SelectCountryComponent } from '../../../components/select-country/selec
 import { CountryService } from '../../../services/country.service';
 import { ICountry } from '../../../interfaces/ICountry';
 import { TapperComponent } from '../../../components/tapper/tapper.component';
+import { Route, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [LayoutComponent, TableOFPositionsComponent,NgOptimizedImage,MapComponent, SelectCountryComponent,TapperComponent
-  ],
+  imports: [LayoutComponent,RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -20,26 +20,23 @@ import { TapperComponent } from '../../../components/tapper/tapper.component';
 
 export class HomeComponent implements OnInit {
  
-  private audio = new Audio();
 
 
-  constructor(){
+  constructor(
+    private router: Router
+  ){
   }
 
   ngOnInit(): void {
-    this.setAudio();
 
   }
 
-
-  setAudio(){
-    this.audio.src = "https://firebasestorage.googleapis.com/v0/b/globalclick-app.appspot.com/o/app%2Fmusica.mp3?alt=media&token=875ffb51-ce90-455b-9f66-2fdde959061b"
-    this.audio.load();
+  navigateByUrl(url:string){
+    this.router.navigateByUrl(url)
   }
 
-  playSound(){
-    this.audio.play().catch(error => console.log('Error al reproducir sonido:', error));
-  }
+
+  
   
 
 }
