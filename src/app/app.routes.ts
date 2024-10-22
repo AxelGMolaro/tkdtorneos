@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/public/home/home.component';
 import { LoginComponent } from './pages/public/login/login.component';
+import { FigthComponent } from './pages/public/figth/figth.component';
 
 export const routes: Routes = [
-    { path: "", component: HomeComponent },
+    { path: "", component: FigthComponent },
     { path: "login", component: LoginComponent }
 ];
